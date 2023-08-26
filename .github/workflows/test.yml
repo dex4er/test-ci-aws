@@ -6,7 +6,7 @@ on:
       - "**"
 
 env:
-  AWS_REGION: eu-central-1
+  AWS_REGION: us-east-1
   AWS_ROLE_ARN: arn:aws:iam::037834090961:role/GitHub
 
 permissions:

@@ -31,8 +31,14 @@ jobs:
         role-to-assume: ${{ env.AWS_ROLE_ARN }}
 
     - name: Login to Amazon ECR
-      id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: AWS caller ID
       run: aws sts get-caller-identity
+
+    - name: Public ECR Push
+      run: |
+        docker pull dex4er/gitlab-ci-semver-labels:v0.2.0-SNAPSHOT-0be5bb1-linux-arm64
+        docker tag dex4er/gitlab-ci-semver-labels:v0.2.0-SNAPSHOT-0be5bb1-linux-arm64 public.ecr.aws/q8i3x1g6/gitlab-ci-semver-labels:v0.2.0-SNAPSHOT-0be5bb1-linux-arm64
+        docker push public.ecr.aws/q8i3x1g6/gitlab-ci-semver-labels:v0.2.0-SNAPSHOT-0be5bb1-linux-arm64
+      
